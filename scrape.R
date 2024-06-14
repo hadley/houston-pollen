@@ -43,11 +43,11 @@ find_html <- function(date) {
   )
 
   for (url in urls) {
-    gha_notice("Trying {url}", title = "Downloading")
+    gha_notice("💭 Trying {url}", title = "Downloading")
     tryCatch(
       {
         resp <- req_perform(request(paste0(base_url, url)))
-        gha_notice("Found it!", title = "Downloading")
+        gha_notice("✅ Found it!", title = "Downloading")
         return(resp_body_html(resp))
       },
 
@@ -56,7 +56,7 @@ find_html <- function(date) {
       httr2_http_404 = function(cnd) {}
     )
   }
-  gha_notice("Failed", title = "Downloading")
+  gha_notice("❌ Failed", title = "Downloading")
   NULL
 }
 
@@ -80,4 +80,4 @@ for (date in as.list(todo)) {
   nanoparquet::write_parquet(df, path)
 }
 
-gha_notice("Done! 🚀")
+gha_notice("🚀 Done!")
