@@ -12,7 +12,7 @@ library(stringr)
 # is that because the pollen data isn't collected on local government holidays
 # we'll retry multiple urls until we notice and record in `holidays`
 
-start <- date_build(2024, 1, 1)
+start <- date_build(2023, 8, 16)
 dates <- date_seq(start, to = date_today("America/Chicago") - 1, by = 1)
 # Only on weekdays
 dates <- dates[as_weekday(dates) %in% c("Mon", "Tue", "Wed", "Thu", "Fri")]
@@ -22,19 +22,23 @@ done <- tools::file_path_sans_ext(dir("data"))
 todo <- dates[!dates %in% c(done, holidays)]
 gha_notice("{length(todo)} dates to process")
 
+paste_grid <- function(...) {
+  do.call(paste0, rev(do.call(expand.grid, rev(list(...)))))
+}
+
 # Find the data ----------------------------------------------------------------
 # It looks like the URLS are human created because they appear to randomly
-# vary between two formats. We just try each one in turn, carefully logging
+# vary between a few formats. We just try each one in turn, carefully logging
 # to make sure its obvious what happened.
 
-base_url <- "https://www.houstonhealth.org/services/pollen-mold/houston-pollen-mold-count-"
-
+base_url <- "https://www.houstonhealth.org/services/pollen-mold/"
 find_html <- function(date) {
   gha_notice("Looking for {date}", title = "Downloading")
-  urls <- paste0(
+  urls <- paste_grid(
+    c("houston-pollen-mold-count-", "pollen-mold-"),
     tolower(date_format(date, format = "%A")), "-",
     tolower(date_format(date, format = "%B")), "-",
-    get_day(date), c("", "-"), 
+    get_day(date), c("-", ""), 
     get_year(date)
   )
 
