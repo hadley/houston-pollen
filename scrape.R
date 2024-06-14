@@ -80,4 +80,4 @@ for (date in as.list(todo)) {
   nanoparquet::write_parquet(df, path)
 }
 
-gha_notice("Done! :rocket:")
+gha_notice("Done! 🚀")
