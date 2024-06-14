@@ -12,7 +12,7 @@ library(stringr)
 # is that because the pollen data isn't collected on local government holidays
 # we'll retry multiple urls until we notice and record in `holidays`
 
-start <- date_build(2023, 8, 16)
+start <- date_today("America/Chicago") - 7 # date_build(2023, 8, 16)
 dates <- date_seq(start, to = date_today("America/Chicago") - 1, by = 1)
 # Only on weekdays
 dates <- dates[as_weekday(dates) %in% c("Mon", "Tue", "Wed", "Thu", "Fri")]
@@ -79,3 +79,5 @@ for (date in as.list(todo)) {
   gha_notice("Writing {path}", title = "Parsing")
   nanoparquet::write_parquet(df, path)
 }
+
+gha_notice("Done! :rocket:")
