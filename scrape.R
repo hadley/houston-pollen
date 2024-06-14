@@ -5,6 +5,13 @@ library(httr2)
 library(rvest)
 library(stringr)
 
+# Figure out which days to download --------------------------------------------
+# Implemented this way so that we automatically "backfill" the data; i.e. if
+# a script fails to run one day, the missing day of data will automatically be 
+# filled in the next time the script runs. The minor downside of this technique 
+# is that because the pollen data isn't collected on local government holidays
+# we'll retry multiple urls until we notice and record in `holidays`
+
 start <- date_build(2024, 1, 1)
 dates <- date_seq(start, to = date_today("America/Chicago") - 1, by = 1)
 # Only on weekdays
@@ -14,6 +21,11 @@ holidays <- c("2024-01-01", "2024-05-17")
 done <- tools::file_path_sans_ext(dir("data"))
 todo <- dates[!dates %in% c(done, holidays)]
 gha_notice("{length(todo)} dates to process")
+
+# Find the data ----------------------------------------------------------------
+# It looks like the URLS are human created because they appear to randomly
+# vary between two formats. We just try each one in turn, carefully logging
+# to make sure its obvious what happened.
 
 base_url <- "https://www.houstonhealth.org/services/pollen-mold/houston-pollen-mold-count-"
 
@@ -34,12 +46,17 @@ find_html <- function(date) {
         gha_notice("Found it!", title = "Downloading")
         return(resp_body_html(resp))
       },
+
+      # Only catch the specific case of a file not found because we want other 
+      # errors to bubble up and cause the action to fail and signal us
       httr2_http_404 = function(cnd) {}
     )
   }
   gha_notice("Failed", title = "Downloading")
   NULL
 }
+
+# Parse and save it ------------------------------------------------------------
 
 for (date in as.list(todo)) {
   html <- find_html(date[[1]])
