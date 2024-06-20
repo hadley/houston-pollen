@@ -9,4 +9,4 @@ Imports:
   rvest,
   stringr,
   tools
-Remotes: r-lib/gha
+Remotes: r-lib/gha, r-lib/nanoparquet
