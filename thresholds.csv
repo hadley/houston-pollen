@@ -1,0 +1,17 @@
+category,low,high,value
+weed,0,9,low
+weed,10,49,medium
+weed,50,499,heavy
+weed,500,Inf,extremely high
+grass,0,4,low
+grass,5,19,medium
+grass,20,199,heavy
+grass,200,Inf,extremely high
+tree,0,14,low
+tree,15,89,medium
+tree,90,1499,heavy
+tree,1500,Inf,extremely high
+mold,0,6499,low
+mold,6500,12999,medium
+mold,13000,49999,heavy
+mold,50000,Inf,extremely high

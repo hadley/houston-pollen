@@ -1,0 +1,50 @@
+category,type
+tree,Acer (Maple)
+tree,Alnus (Alder)
+tree,Betula (Birch)
+tree,"Carya (Hickory, Pecan)"
+tree,Celtis (Hackberry)
+tree,Corylus (Hazelnut)
+tree,Cupressaceae (Cedar)
+tree,Fraxinus (Ash)
+tree,Juglans (Walnut)
+tree,Liquidamber (Sweet Gum)
+tree,Morus (Mulberry)
+tree,Pinaceae (Pine)
+tree,Platanus (Sycamore)
+tree,Populus (Cottonwood)
+tree,Quercus (Oak)
+tree,Salix (Willow)
+tree,Tilia (Linden)
+tree,Ulmus (Elm)
+tree,Other tree pollen/unknown
+weed,Ambrosia (Ragweed)
+weed,Amaranthaceae (Amaranth)
+weed,Artemeisia (Sage)
+weed,Asteraceae (Aster)
+weed,Cyperaceae (Sedge)
+weed,Plantago (Plantain)
+weed,Rumex (Sheep Sorel)
+weed,Typha (Cattail)
+weed,Urticaceae (Nettle)
+weed,Other weed pollen
+mold,Algae
+mold,Alternaria
+mold,Ascospores
+mold,Basidiospores
+mold,Cercospora
+mold,Cladosporium
+mold,Curvularia
+mold,Dreshslera/Helminthosporium
+mold,Epicoccum
+mold,Nigrospora
+mold,Oidium/Erysiphe
+mold,Penicillium/Aspergillus
+mold,Periconia
+mold,Pithomyces
+mold,Rusts
+mold,Smuts/Myxomycetes
+mold,Spegazzinia
+mold,Stemphilium
+mold,Tetraploa
+mold,Torula
