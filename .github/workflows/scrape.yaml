@@ -25,7 +25,7 @@ jobs:
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: By action https://github.com/your-org/your-repo/actions/runs/${{ env.GITHUB_RUN_ID }}
+        commit_message: By action https://github.com/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}
 
   collapse:
     needs: scrape
