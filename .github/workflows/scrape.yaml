@@ -24,6 +24,8 @@ jobs:
       run: Rscript scrape.R
 
     - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: By action https://github.com/your-org/your-repo/actions/runs/${{ env.GITHUB_RUN_ID }}
 
   collapse:
     needs: scrape
@@ -39,7 +41,11 @@ jobs:
         use-public-rspm: true
     - uses: r-lib/actions/setup-r-dependencies@v2
 
+    - run: git pull
+
     - name: Collapse into yearly parquet files
       run: Rscript collapse.R
 
     - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: By action https://github.com/your-org/your-repo/actions/runs/${{ env.GITHUB_RUN_ID }}
