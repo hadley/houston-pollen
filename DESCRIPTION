@@ -5,9 +5,9 @@ Imports:
   clock,
   gha,
   httr2,
-  nanoparquet,
+  nanoparquet (>= 0.3.1),
   rvest,
   stringr,
   tools
-Remotes: r-lib/gha, r-lib/nanoparquet
+Remotes: r-lib/gha
 License: MIT
