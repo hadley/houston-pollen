@@ -26,6 +26,11 @@ jobs:
     - name: Collapse into yearly parquet files
       run: Rscript collapse.R
 
+    - name: Create commit message
+      id: commit_message_step
+      run: |
+        echo "commit_message=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_OUTPUT
+
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: By action https://github.com/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}
+        commit_message: ${{ steps.commit_message_step.outputs.commit_message }}
